@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(cd \"C:\\\\Users\\\\INDEX INFORMATIQUE\\\\Downloads\\\\PFE\"; Get-ChildItem -Recurse -Depth 3 -Directory | Select-Object FullName | ForEach-Object { $_.FullName -replace [regex]::Escape\\(\"C:\\\\Users\\\\INDEX INFORMATIQUE\\\\Downloads\\\\PFE\"\\), \".\" } | Sort-Object)",
+      "PowerShell(Invoke-WebRequest -Uri \"http://127.0.0.1:8000/api/auth/login/\" -Method POST -ContentType \"application/json\" -Body '{\"email\":\"admin@smartms.com\",\"password\":\"admin12345\"}' -UseBasicParsing)",
+      "Bash(python manage.py runserver 8000)",
+      "Bash(curl -s -X POST http://127.0.0.1:8000/api/auth/login/ -H \"Content-Type: application/json\" -d '{\"email\":\"admin@smartms.com\",\"password\":\"admin12345\"}')",
+      "Bash(pip install *)",
+      "Bash(curl -s http://127.0.0.1:8000/api/auth/login/ -X POST -H \"Content-Type: application/json\" -d '{\"email\":\"admin@smartms.com\",\"password\":\"admin12345\"}')",
+      "Bash(cmd.exe /c \"start msedge http://localhost:8080\")",
+      "Bash(flutter analyze *)"
+    ]
+  }
+}

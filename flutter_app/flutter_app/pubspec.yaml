@@ -1,0 +1,47 @@
+name: smart_chantier
+description: Application professionnelle de gestion de chantiers de construction.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State management
+  provider: ^6.1.2
+
+  # HTTP client
+  dio: ^5.7.0
+
+  # Secure storage (JWT tokens)
+  flutter_secure_storage: ^9.2.2
+
+  # Navigation
+  go_router: ^14.2.7
+
+  # UI
+  google_fonts: ^6.2.1
+  cached_network_image: ^3.4.1
+  flutter_svg: ^2.0.10+1
+  shimmer: ^3.0.0
+  badges: ^3.1.2
+  percent_indicator: ^4.2.3
+  intl: ^0.19.0
+
+  # Image picker
+  image_picker: ^1.1.2
+
+  # Shared preferences (offline cache)
+  shared_preferences: ^2.3.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
