@@ -1,131 +1,133 @@
 # Smart Chantier
 
-Smart Chantier is a professional construction site management application developed during an internship at **Smart MS**.
+Smart Chantier is a professional construction site management platform developed during an internship at Smart MS.
 
-The platform helps organizations, project managers, engineers, and site supervisors efficiently manage construction projects, daily activities, tasks, reports, photos, and team collaboration from a mobile application.
+The system consists of:
+
+- Flutter Mobile Application
+- Django REST API Backend
+- PostgreSQL Database
+
+The platform helps project managers, engineers, site supervisors, and administrators manage construction projects efficiently.
 
 ---
 
-# Features
+# Main Features
 
 ## Authentication
 
-- Secure Login
-- User Registration
+- Login
+- Logout
+- JWT Authentication
 - Password Reset
 - Role-Based Access Control
-- Google Authentication (optional)
 
 ---
 
 ## User Management
 
-### Administrator
+- Create Users
+- Update Users
+- Delete Users
+- Assign Roles
 
-- Manage all users
-- Manage organizations
-- Manage projects
-- View reports and statistics
+Roles:
 
-### Engineer
-
-- Study and monitor projects
-- Create and manage tasks
-- Track project progress
-- Access reports
-
-### Site Supervisor (Chef Chantier)
-
-- Daily site monitoring
-- Create daily reports
-- Upload site photos
-- Track workers
-- Monitor task completion
+- Administrator
+- Project Manager
+- Engineer
+- Site Supervisor
+- Accountant
 
 ---
 
 ## Project Management
 
-- Create projects
-- Update projects
-- Delete projects
-- Project progress tracking
-- Budget monitoring
-- Project status management
+- Create Project
+- Update Project
+- Delete Project
+- Project Monitoring
+- Progress Tracking
+- Budget Tracking
 
 ---
 
 ## Task Management
 
-- Create tasks
-- Assign tasks
-- Update task status
-- Set priorities
-- Set deadlines
-- Monitor completion rates
+- Create Tasks
+- Assign Tasks
+- Update Task Status
+- Track Completion
 
 ---
 
 ## Daily Reports
 
-- Create daily reports
-- Record completed work
-- Record workforce numbers
-- Add remarks and observations
-- Track daily site progress
+- Daily Site Reports
+- Progress Monitoring
+- Site Notes
+- Workforce Tracking
+
+---
+
+## Expenses Management
+
+- Add Expenses
+- Categorize Expenses
+- Budget Monitoring
+- Financial Tracking
 
 ---
 
 ## Photo Management
 
-- Upload construction photos
-- Store photos securely
-- Link photos to projects
-- Track construction evolution
+- Upload Site Photos
+- Store Progress Images
+- Link Images to Projects
 
 ---
 
-## Organization Management
+## Notifications
 
-- Create organizations
-- Manage organization members
-- Assign users to organizations
-- Track organization projects
+- Project Alerts
+- Task Reminders
+- System Notifications
 
 ---
 
-# Technologies
+# Technology Stack
 
 ## Frontend
 
 - Flutter
 - Dart
-- Material Design 3
-- Provider / Riverpod (state management)
+- Material Design
 
 ## Backend
 
-- Firebase Authentication
-- Cloud Firestore
-- Firebase Storage
-- Firebase Cloud Messaging
+- Django
+- Django REST Framework
+- JWT Authentication
 
 ## Database
 
-Cloud Firestore
+- PostgreSQL
+
+## Media Storage
+
+- Django Media Files
 
 ---
 
-# Architecture
+# System Architecture
 
 ```text
 Flutter Mobile App
-        │
+        |
+        |
         ▼
-Firebase Authentication
-        │
+Django REST API
+        |
+        |
         ▼
-Cloud Firestore
-        │
-        ▼
-Firebase Storage
+PostgreSQL Database
