@@ -31,7 +31,7 @@ android {
 
     defaultConfig {
         applicationId = "com.smartms.smartchantier"
-        minSdk = 21        // Android 5.0 and above (covers 99% of devices)
+        minSdk = flutter.minSdkVersion        // Android 5.0 and above (covers 99% of devices)
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
