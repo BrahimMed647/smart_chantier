@@ -1,62 +1,79 @@
-/// Change this to your Django backend URL.
-/// For local development: http://10.0.2.2:8000 (Android emulator)
-/// For device on same network: http://192.168.x.x:8000
-/// For web (Edge/Chrome): http://localhost:8000
 import "package:flutter/foundation.dart";
 
-const String _androidUrl = "http://10.0.2.2:8000/api";
-const String _webUrl = "http://localhost:8000/api";
-final String kBaseUrl = kIsWeb ? _webUrl : _androidUrl;
+// ============================================================
+// CONFIGURATION DE L'URL DE L'API
+// ============================================================
+//
+// Pour passer de LOCAL a PRODUCTION :
+//   Mets kUseProduction = true  avant de builder l'APK
+//
+// Pour developper en local :
+//   Mets kUseProduction = false
+//
+// ============================================================
 
-/// Role labels in French
+// Change to false when developing locally
+const bool kUseProduction = true;
+
+// Your Railway backend URL
+const String kProductionUrl = "https://smartchantier-production.up.railway.app/api";
+
+// Local development URLs
+const String _androidEmulatorUrl = "http://10.0.2.2:8000/api";
+const String _webLocalUrl = "http://localhost:8000/api";
+
+// The URL the app actually uses
+final String kBaseUrl = kUseProduction
+    ? kProductionUrl
+    : (kIsWeb ? _webLocalUrl : _androidEmulatorUrl);
+
+// ============================================================
+// LABELS — French translations
+// ============================================================
+
 const Map<String, String> kRoleLabels = {
   "admin": "Administrateur",
   "user_admin": "Admin Utilisateurs",
-  "engineer": "Ingénieur",
+  "engineer": "Ingenieur",
   "site_manager": "Chef de Chantier",
   "accountant": "Comptable",
-  "client": "Client / Maître d'Ouvrage",
+  "client": "Client / Maitre d'Ouvrage",
 };
 
-/// Project status labels
 const Map<String, String> kProjectStatusLabels = {
-  "planned": "Planifié",
+  "planned": "Planifie",
   "in_progress": "En cours",
   "on_hold": "En pause",
   "delayed": "En retard",
-  "completed": "Terminé",
-  "cancelled": "Annulé",
+  "completed": "Termine",
+  "cancelled": "Annule",
 };
 
-/// Task status labels
 const Map<String, String> kTaskStatusLabels = {
-  "todo": "À faire",
+  "todo": "A faire",
   "in_progress": "En cours",
-  "done": "Terminé",
+  "done": "Termine",
   "delayed": "En retard",
-  "cancelled": "Annulé",
+  "cancelled": "Annule",
 };
 
-/// Task priority labels
 const Map<String, String> kTaskPriorityLabels = {
   "low": "Faible",
   "medium": "Moyen",
-  "high": "Élevé",
+  "high": "Eleve",
   "critical": "Critique",
 };
 
-/// Expense category labels
 const Map<String, String> kExpenseCategoryLabels = {
-  "materials": "Matériaux",
-  "labor": "Main d'œuvre",
+  "materials": "Materiaux",
+  "labor": "Main d'oeuvre",
   "transport": "Transport",
-  "equipment": "Équipement",
+  "equipment": "Equipement",
   "subcontractor": "Sous-traitant",
   "administrative": "Administratif",
   "other": "Autre",
 };
 
-/// Alert level labels
 const Map<String, String> kAlertLevelLabels = {
   "info": "Info",
   "warning": "Attention",

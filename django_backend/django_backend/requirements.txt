@@ -1,11 +1,28 @@
+# Framework Django
 Django==4.2.16
 djangorestframework==3.15.2
+
+# Authentification JWT
 djangorestframework-simplejwt==5.3.1
+
+# CORS (autorise Flutter a appeler l'API)
 django-cors-headers==4.4.0
+
+# Filtres et recherche
 django-filter==24.3
+
+# Images (photos de chantier)
 Pillow==10.4.0
+
+# Variables d'environnement (.env)
 python-dotenv==1.0.1
+
+# Base de donnees PostgreSQL (Railway)
 dj-database-url==2.2.0
 psycopg2-binary==2.9.9
+
+# Serveur de production
 gunicorn==23.0.0
+
+# Fichiers statiques en production
 whitenoise==6.7.0

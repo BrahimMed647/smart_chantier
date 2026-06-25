@@ -43,3 +43,8 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# IMPORTANT: Never commit these files — they contain secret signing keys
+android/key.properties
+*.jks
+*.keystore

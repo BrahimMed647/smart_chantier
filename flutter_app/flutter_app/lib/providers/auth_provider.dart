@@ -3,15 +3,6 @@ import "../models/user.dart";
 import "../services/api_service.dart";
 import "../services/storage_service.dart";
 
-// Admin par défaut — affiché immédiatement même si le backend est hors ligne
-const _kDefaultAdmin = AppUser(
-  id: 1,
-  email: "admin@smartms.com",
-  name: "Administrateur",
-  role: "admin",
-  organizationName: "Smart Chantier Corp",
-);
-
 enum AuthStatus { unknown, authenticated, unauthenticated }
 
 class AuthProvider extends ChangeNotifier {
@@ -24,36 +15,19 @@ class AuthProvider extends ChangeNotifier {
   String? get error => _error;
   bool get isAuthenticated => _status == AuthStatus.authenticated;
 
+  // Called once when the app starts.
+  // If the user was already logged in, we restore their session.
   Future<void> initialize() async {
-    // 1. Token déjà stocké → utilisateur connecté
     final savedUser = await StorageService.getUser();
     final token = await StorageService.getAccessToken();
+
     if (savedUser != null && token != null) {
       _user = savedUser;
       _status = AuthStatus.authenticated;
-      notifyListeners();
-      return;
+    } else {
+      _status = AuthStatus.unauthenticated;
     }
-
-    // 2. Tentative auto-login
-    final ok = await login("admin@smartms.com", "admin12345");
-    if (ok) return;
-
-    // 3. Serveur indisponible → on entre quand même en tant qu'admin par défaut
-    _user = _kDefaultAdmin;
-    _status = AuthStatus.authenticated;
     notifyListeners();
-    // Retry en arrière-plan toutes les 5s jusqu'à connexion réelle
-    _retryLoginInBackground();
-  }
-
-  void _retryLoginInBackground() {
-    Future.delayed(const Duration(seconds: 5), () async {
-      if (_user == _kDefaultAdmin) {
-        final ok = await login("admin@smartms.com", "admin12345");
-        if (!ok) _retryLoginInBackground();
-      }
-    });
   }
 
   Future<bool> login(String email, String password) async {
@@ -72,7 +46,10 @@ class AuthProvider extends ChangeNotifier {
       _status = AuthStatus.authenticated;
       notifyListeners();
       return true;
-    } catch (_) {
+    } catch (e) {
+      _error = "Impossible de se connecter. Verifiez votre email et mot de passe.";
+      _status = AuthStatus.unauthenticated;
+      notifyListeners();
       return false;
     }
   }
