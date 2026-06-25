@@ -3,10 +3,7 @@ builder = "nixpacks"
 # 1. Install Python dependencies
 # 2. Copy the pre-built Flutter web files into django's flutter_web folder
 # 3. Collect all static files
-buildCommand = """
-pip install -r requirements.txt &&
-python manage.py collectstatic --noinput
-"""
+buildCommand = "pip install -r requirements.txt && python manage.py collectstatic --noinput"
 
 [deploy]
 # Run migrations then start gunicorn
