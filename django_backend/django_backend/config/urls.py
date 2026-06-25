@@ -18,30 +18,22 @@ def health_check(request):
 
 def flutter_app(request, path=""):
     """
-    Serve the Flutter web app for any non-API route.
-    Django serves the built Flutter web files from the 'flutter_web' folder.
+    SPA catch-all: serves index.html for any non-API, non-file route.
+    Actual Flutter static files (main.dart.js, canvaskit, etc.) are served
+    by WhiteNoise with Gzip compression and long-lived cache headers.
     """
     flutter_web_dir = os.path.join(settings.BASE_DIR, "flutter_web")
-
-    # Try to serve the requested file
-    if path and path != "/":
-        file_path = os.path.join(flutter_web_dir, path)
-        if os.path.isfile(file_path):
-            return serve(request, path, document_root=flutter_web_dir)
-
-    # For all other routes, serve index.html (Flutter handles its own routing)
     index_path = os.path.join(flutter_web_dir, "index.html")
     if os.path.isfile(index_path):
         with open(index_path, "rb") as f:
             return HttpResponse(f.read(), content_type="text/html")
 
-    # If Flutter web is not built yet, show a simple message
     return HttpResponse(
         """
         <html><body style="font-family:sans-serif;text-align:center;padding:60px">
         <h1>Smart Chantier</h1>
         <p>API is running. Flutter web app not deployed yet.</p>
-        <p><a href="/api/auth/login/">API Login</a> &nbsp;|&nbsp; <a href="/health/">Health</a></p>
+        <p><a href="/health/">Health Check</a></p>
         </body></html>
         """,
         content_type="text/html",
